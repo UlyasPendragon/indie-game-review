@@ -30,4 +30,4 @@ export interface Review {
   views: number;
   likes: number;
   comments: number;
-} 
+}

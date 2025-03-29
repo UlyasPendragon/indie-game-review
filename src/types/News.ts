@@ -24,4 +24,4 @@ export interface News {
     name: string;
     url: string;
   };
-} 
+}

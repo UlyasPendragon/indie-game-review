@@ -13,39 +13,48 @@ This document outlines the architecture, technology stack, development standards
 ### 2.1 Architecture
 
 **Frontend & Server-Side Rendering:**
+
 - **Framework:** Built with Next.js using TypeScript.
 - **Rendering:** Employs Next.js hybrid rendering—static generation with Incremental Static Regeneration (ISR) for performance, complemented by server-side rendering for dynamic content.
 
 **Backend & API Routes:**
+
 - Implements Next.js API routes to handle dynamic operations (e.g., content fetching, authentication, and business logic).
 - Integrates a headless CMS to manage articles, reviews, developer interviews, and static content with API calls.
 
 **Content Management & Search:**
+
 - Content is organized into structured types (articles, reviews, interviews) and fetched either at build time or on demand via ISR.
 - Advanced search and filtering capabilities will be implemented using tools such as Algolia or ElasticSearch.
 
 ### 2.2 Technology Stack
 
 **Client & Server Framework:**
+
 - **Framework:** Next.js with TypeScript for seamless client-server integration.
 - **Styling:** HTML5 and CSS3 with SASS for modular, maintainable design.
 
 **Routing & Data Fetching:**
+
 - Leverages Next.js file-based routing to support both static pages (e.g., About, Contact) and dynamic pages (e.g., Post and Category pages).
 - Uses Next.js functions (e.g., `getStaticProps`, `getStaticPaths`, `getServerSideProps`) for efficient content fetching from the CMS.
 
 **State Management:**
+
 - Managed via the React Context API for global state.
 
 **Testing:**
+
 - Incorporates Jest and React Testing Library for unit and integration tests.
 - Uses Axe and Lighthouse for accessibility testing.
 
 **Version Control & CI/CD:**
+
 - Code is hosted on GitHub.
 - CI/CD pipelines with GitHub Actions run linting, TypeScript type-checking, and tests on every commit and deployment.
 
 **Deployment:**
+
 - The site will be deployed on platforms like Vercel, leveraging Next.js capabilities for scalability and performance.
 
 ## 3. Functional Requirements
@@ -190,4 +199,4 @@ indie-game-review/
 
 ---
 
-This revised document consolidates all previous suggestions and addresses potential gaps. Each section now clearly defines the technical, functional, and non-functional requirements with enhanced clarity and structure. Let me know if you need any more modifications or deeper details in any section!
+

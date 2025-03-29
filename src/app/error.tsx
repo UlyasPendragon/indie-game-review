@@ -17,23 +17,17 @@ export default function Error({
   return (
     <div className="min-h-[60vh] flex items-center justify-center">
       <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          Something went wrong!
-        </h1>
-        <p className="text-gray-600 mb-8 max-w-md mx-auto">
-          We apologize for the inconvenience. Please try again or contact us if the problem persists.
+        <h1 className="text-4xl font-retro text-retro-neon-pink mb-4">Something went wrong!</h1>
+        <p className="text-retro-neon-blue/90 font-terminal mb-8 max-w-md mx-auto">
+          We apologize for the inconvenience. Please try again or contact us if the problem
+          persists.
         </p>
         <button
           onClick={reset}
-          className="inline-flex items-center px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+          className="inline-flex items-center px-6 py-3 bg-retro-neon-pink text-white font-terminal rounded-lg hover:bg-retro-neon-pink/90 shadow-neon-pink transition-colors"
         >
           Try Again
-          <svg
-            className="w-5 h-5 ml-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+          <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -45,4 +39,4 @@ export default function Error({
       </div>
     </div>
   );
-} 
+}

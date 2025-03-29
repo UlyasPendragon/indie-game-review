@@ -1,69 +1,59 @@
-import { NextResponse } from 'next/server';
-import { hash } from 'bcryptjs';
-import connectDB from '@/lib/mongodb';
-import User from '@/models/User';
+import { NextRequest, NextResponse } from 'next/server';
+import bcrypt from 'bcryptjs';
+import clientPromise from '@/lib/mongodb';
+import { User, UserRole } from '@/types/User';
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
-    const { name, email, password } = await request.json();
+    const { email, password, name } = await request.json();
 
     // Validate input
-    if (!name || !email || !password) {
+    if (!email || !password || !name) {
       return NextResponse.json(
-        { message: 'Please provide all required fields' },
+        { error: 'Missing required fields' },
         { status: 400 }
       );
     }
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { message: 'Please provide a valid email address' },
-        { status: 400 }
-      );
-    }
-
-    // Validate password strength
-    if (password.length < 8) {
-      return NextResponse.json(
-        { message: 'Password must be at least 8 characters long' },
-        { status: 400 }
-      );
-    }
-
-    await connectDB();
+    const client = await clientPromise;
+    const db = client.db();
+    const users = db.collection<User>('users');
 
     // Check if user already exists
-    const existingUser = await User.findOne({ email });
+    const existingUser = await users.findOne({ email });
     if (existingUser) {
       return NextResponse.json(
-        { message: 'User with this email already exists' },
-        { status: 400 }
+        { error: 'User already exists' },
+        { status: 409 }
       );
     }
 
     // Hash password
-    const hashedPassword = await hash(password, 12);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create new user
-    const user = await User.create({
-      name,
+    const newUser: Omit<User, '_id'> = {
+      id: crypto.randomUUID(),
       email,
+      name,
       password: hashedPassword,
-      role: 'user',
+      role: 'user' as UserRole,
       isActive: true,
-    });
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+
+    await users.insertOne(newUser as User);
 
     return NextResponse.json(
-      { message: 'User created successfully', userId: user.id },
+      { message: 'User created successfully' },
       { status: 201 }
     );
   } catch (error) {
     console.error('Signup error:', error);
     return NextResponse.json(
-      { message: 'An error occurred while creating the user' },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }
-} 
+}

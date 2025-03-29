@@ -36,4 +36,4 @@ export function useAuth(requiredRole?: UserRole) {
     isLoading: status === 'loading',
     role: session?.user?.role as UserRole | undefined,
   };
-} 
+}

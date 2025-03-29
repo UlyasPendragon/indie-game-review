@@ -21,4 +21,4 @@ export interface User {
     sessionToken: string;
     expires: Date;
   }[];
-} 
+}

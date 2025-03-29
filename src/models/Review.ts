@@ -47,4 +47,4 @@ reviewSchema.index({ 'gameInfo.title': 1 });
 reviewSchema.index({ categories: 1 });
 reviewSchema.index({ tags: 1 });
 
-export default mongoose.models.Review || mongoose.model<Review>('Review', reviewSchema); 
+export default mongoose.models.Review || mongoose.model<Review>('Review', reviewSchema);

@@ -37,4 +37,4 @@ export interface Interview {
   views: number;
   likes: number;
   comments: number;
-} 
+}
