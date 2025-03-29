@@ -1,233 +1,107 @@
-# Indie Game Review Website
+# Indie Game Review
 
-A modern, responsive website for reviewing indie games, built with Next.js, TypeScript, and TailwindCSS.
+A modern, retro-styled website for indie game reviews, built with Next.js 14, TypeScript, and TailwindCSS. The platform features a unique Game Boy-inspired design while maintaining modern web standards and best practices.
 
 ## Features
 
-- 🎮 Game Reviews
-- 📰 News Articles
-- 👨‍💻 Developer Interviews
-- 🔍 Advanced Search
-- 🌐 Internationalization Support
-- 📱 Responsive Design
-- ⚡ Performance Optimized
+- 🎮 Game Boy-inspired UI design with retro neon aesthetics
+- 🌙 Dark mode optimized with custom color schemes
+- 📱 Fully responsive layout for all devices
+- 🔐 Secure user authentication with NextAuth.js
+- ✍️ Comprehensive game reviews with ratings and categories
+- 📰 Latest gaming news and developer interviews
+- 👤 User profiles with review history
+- 🔍 Advanced search and filtering capabilities
+- 🌐 SEO optimized with metadata and structured data
+- 🎨 Custom animations and transitions with Framer Motion
 
 ## Tech Stack
 
+### Frontend
 - **Framework:** Next.js 14 with App Router
-- **Language:** TypeScript
-- **Styling:** TailwindCSS + SASS
-- **Testing:** Jest + React Testing Library
-- **Code Quality:** ESLint + Prettier
+- **Language:** TypeScript (strict mode)
+- **Styling:** TailwindCSS with custom configuration
+- **Animations:** Framer Motion
+- **State Management:** React Context API
+- **Forms:** React Hook Form with Zod validation
+- **UI Components:** Custom components with Radix UI primitives
+
+### Backend
+- **Runtime:** Node.js
+- **Database:** MongoDB Atlas
+- **Authentication:** NextAuth.js
+- **API:** Next.js API Routes
+- **Content Management:** Custom API for dynamic content
+
+### Development Tools
+- **Testing:** Jest & React Testing Library
+- **Linting:** ESLint with custom rules
+- **Formatting:** Prettier
+- **Type Checking:** TypeScript
 - **CI/CD:** GitHub Actions
 
 ## Getting Started
 
-### Prerequisites
-
-- Node.js 18.x or later
-- npm 9.x or later
-
-### Installation
-
 1. Clone the repository:
-
    ```bash
    git clone https://github.com/yourusername/indie-game-review.git
-   cd indie-game-review
    ```
 
 2. Install dependencies:
-
    ```bash
+   cd indie-game-review
    npm install
    ```
 
-3. Create a `.env.local` file in the root directory and add your environment variables:
-
-   ```env
-   NEXT_PUBLIC_API_URL=your_api_url
+3. Create a `.env.local` file in the root directory with the following variables:
+   ```
+   MONGODB_URI=your_mongodb_uri
+   NEXTAUTH_SECRET=your_nextauth_secret
+   NEXTAUTH_URL=http://localhost:3000
    ```
 
-4. Start the development server:
-
+4. Run the development server:
    ```bash
    npm run dev
    ```
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm start` - Start production server
-- `npm run lint` - Run ESLint
-- `npm run type-check` - Run TypeScript type checking
-- `npm test` - Run tests
-- `npm run format` - Format code with Prettier
-
 ## Project Structure
 
 ```
 indie-game-review/
-├── public/                          # Static assets
 ├── src/
-│   ├── app/                         # Next.js app router pages
-│   ├── components/                  # React components
-│   ├── context/                     # React Context providers
-│   ├── hooks/                       # Custom React hooks
-│   ├── styles/                      # Global styles
-│   ├── types/                       # TypeScript type definitions
-│   └── utils/                       # Utility functions
+│   ├── app/              # Next.js 14 App Router pages and layouts
+│   ├── components/       # Reusable React components
+│   │   ├── ui/          # Basic UI components
+│   │   ├── layout/      # Layout components
+│   │   └── features/    # Feature-specific components
+│   ├── context/         # React context providers
+│   ├── hooks/           # Custom React hooks
+│   ├── lib/             # Utility functions and configurations
+│   ├── models/          # MongoDB models and schemas
+│   ├── styles/          # Global styles and TailwindCSS config
+│   └── types/           # TypeScript type definitions
+├── public/              # Static files
+└── ...config files      # Various configuration files
 ```
 
-# Indie Game Review - Style Guide
+## Development Guidelines
 
-This document serves as a reference for maintaining consistent styling throughout the Indie Game Review website. All styling is centralized in our theme configuration.
+### Code Style
+- Follow TypeScript best practices with strict type checking
+- Use functional components with hooks
+- Implement proper error handling and loading states
+- Write unit tests for critical components
+- Follow accessibility guidelines (WCAG 2.1)
 
-## Core Principles
-
-1. **Single Source of Truth**: All styling variables are defined in `src/styles/theme.ts`
-2. **Consistency**: Always reference theme variables instead of hardcoding values
-3. **Maintainability**: When new UI elements are needed, add them to the style guide
-
-## How to Use the Theme System
-
-### Tailwind Classes
-
-For most styling needs, use the Tailwind classes that reference our theme:
-
-```jsx
-// Example component using theme-based Tailwind classes
-<div className="bg-retro-dark-primary text-retro-neon-blue">
-  <h1 className="font-retro text-retro-neon-pink">Game Review</h1>
-  <p className="font-terminal">This is a retro-styled review.</p>
-</div>
-```
-
-### Theme Object
-
-For dynamic styling needs, import the theme object:
-
-```jsx
-import { theme } from '@/styles/theme';
-
-// Use the theme object in your component
-const buttonStyle = {
-  backgroundColor: theme.colors.retro.neon.pink,
-  color: 'white',
-  fontFamily: theme.fontFamily.terminal,
-};
-```
-
-### Reusing UI Patterns
-
-The theme includes common UI patterns that should be used consistently:
-
-```jsx
-import { theme } from '@/styles/theme';
-
-function ExampleComponent() {
-  // You can reference the patterns in your components
-  return (
-    <div className={theme.uiPatterns.mainContainer}>
-      <h1 className={theme.uiPatterns.headers.h1}>Title</h1>
-      <p className={theme.uiPatterns.bodyText}>Content</p>
-      <button className={theme.uiPatterns.buttons.primary}>Action</button>
-    </div>
-  );
-}
-```
-
-## Color System
-
-Our retro theme uses a specific color palette:
-
-### Background Colors
-- `retro-dark-primary` - Main background color (#1a1a2e)
-- `retro-dark-secondary` - Secondary backgrounds, cards (#16213e)
-- `retro-dark-accent` - Subtle accents (#0f3460)
-
-### Accent Colors
-- `retro-neon-pink` - Primary action color (#ff00ff)
-- `retro-neon-blue` - Secondary actions and text (#00ffff)
-- `retro-neon-green` - Success states (#00ff00)
-- `retro-neon-yellow` - Warning states (#ffff00)
-- `retro-neon-purple` - Special elements (#9d00ff)
-
-## Typography
-
-Our site uses specific fonts for the retro aesthetic:
-
-- `font-retro` - Press Start 2P font for headings
-- `font-terminal` - VT323 for body text in the retro theme
-- `font-sans` - Inter for general content
-- `font-mono` - Fira Code for code blocks
-
-## Common Components
-
-### Containers
-```jsx
-// Main content container
-<div className="bg-retro-dark-primary/90 border border-retro-neon-blue/20 p-6 rounded-lg shadow-lg">
-  {/* Content */}
-</div>
-```
-
-### Cards
-```jsx
-// Card component
-<article className="bg-retro-dark-primary/90 border border-retro-neon-blue/20 rounded-lg shadow-lg overflow-hidden hover:shadow-neon-blue transition-shadow">
-  <div className="p-6">
-    <h2 className="text-2xl font-retro text-retro-neon-pink mb-2">Card Title</h2>
-    <p className="text-retro-neon-blue/90 mb-4 font-terminal">Card content</p>
-  </div>
-</article>
-```
-
-### Buttons
-```jsx
-// Primary button
-<button className="bg-retro-neon-pink text-white hover:bg-retro-neon-pink/90 font-terminal rounded-md px-4 py-2">
-  Primary Action
-</button>
-
-// Secondary button
-<button className="border-2 border-retro-neon-blue text-retro-neon-blue hover:bg-retro-neon-blue/10 font-terminal rounded-md px-4 py-2">
-  Secondary Action
-</button>
-```
-
-## Animations and Effects
-
-The theme includes specialized animations for the retro feel:
-
-- `animate-pixel-transition` - Subtle pixel scaling effect
-- `animate-glitch` - Glitch effect for text or images
-- `animate-scanline` - CRT scanline effect
-- `animate-flicker` - Neon flicker effect
-- `animate-rainbow-border` - Color cycling border effect
-
-## Making Changes
-
-When you need to update styles:
-
-1. Modify variables in `src/styles/theme.ts`
-2. Update this style guide document if adding new patterns
-3. All components using these theme variables will automatically reflect changes
-
-## Accessibility Considerations
-
-- Ensure sufficient contrast between text and backgrounds
-- Avoid relying solely on color to convey information
-- Test with screen readers and keyboard navigation
-
-## Performance Tips
-
-- Prefer utility classes over custom CSS when possible
-- Use the theme object for dynamic styling needs
-- Minimize the use of expensive animations 
+### Git Workflow
+1. Create feature branch from `main`
+2. Make changes and commit with descriptive messages
+3. Push changes and create pull request
+4. Ensure all tests pass and code is reviewed
+5. Merge to `main` after approval
 
 ## Contributing
 
@@ -240,3 +114,9 @@ When you need to update styles:
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Inspired by the classic Game Boy design
+- Built with modern web technologies
+- Open source community and contributors
