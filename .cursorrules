@@ -44,7 +44,7 @@ The project involves the following technologies and frameworks:
 - Use early returns to simplify logic and improve readability.
 - Style all HTML elements using TailwindCSS classes; avoid using traditional CSS files wherever possible.
 - Use descriptive variable, function, and component names.
-- Prefix event handler functions with “handle” (e.g., `handleClick`, `handleKeyDown`).
+- Prefix event handler functions with "handle" (e.g., `handleClick`, `handleKeyDown`).
 - Implement accessibility features on interactive elements (e.g., include `tabIndex`, `aria-label`, and appropriate event handlers on clickable elements).
 - Use `const` for function expressions and always define types for function parameters and return values.
 - Define props interfaces for React components instead of relying on `PropTypes`.
@@ -59,4 +59,4 @@ The project involves the following technologies and frameworks:
 - Document major functions and components using JSDoc-style comments.
 - Ensure that every commit adheres to a structured format for better version control.
 
-By following these rules, you will maintain a clean, scalable, and robust codebase for your Indie Developer Games Review Website. 🚀
+By following these rules, you will maintain a clean, scalable, and robust codebase for your Indie Developer Games Review Website. 
