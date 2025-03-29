@@ -1,16 +1,29 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import AuthProvider from "@/components/providers/SessionProvider";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import { Press_Start_2P, VT323, Fira_Code } from 'next/font/google';
+import './globals.css';
+import { GameBoyHeader } from '@/components/ui/GameBoyHeader';
+import { Providers } from '@/components/Providers';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const pressStart2P = Press_Start_2P({ 
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-press-start-2p'
+});
+const vt323 = VT323({ 
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-vt323'
+});
+const firaCode = Fira_Code({ 
+  subsets: ['latin'],
+  variable: '--font-fira-code'
+});
 
 export const metadata: Metadata = {
-  title: "Indie Game Review - Your Trusted Source for Indie Game Reviews",
-  description: "Discover the latest indie games with honest reviews, news, and developer interviews.",
-  keywords: "indie games, game reviews, indie game reviews, gaming news, developer interviews",
+  title: 'Indie Game Review',
+  description: 'Your source for honest indie game reviews',
 };
 
 export default function RootLayout({
@@ -19,15 +32,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <AuthProvider>
-          <div className="min-h-screen flex flex-col">
-            <Header />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-          </div>
-        </AuthProvider>
+    <html lang="en" className={`${inter.variable} ${pressStart2P.variable} ${vt323.variable} ${firaCode.variable}`}>
+      <body className="min-h-screen bg-retro-dark-primary text-retro-neon-blue/90 font-terminal">
+        <Providers>
+          <GameBoyHeader />
+          <main className="container mx-auto px-4 py-8">
+            {children}
+          </main>
+        </Providers>
       </body>
     </html>
   );
